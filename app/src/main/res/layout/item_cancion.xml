@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+
+    <TextView
+        android:id="@+id/tvTitulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cancion"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvArtista"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Artista" />
+
+    <TextView
+        android:id="@+id/tvIdCancion"
+        android:layout_width="115dp"
+        android:layout_height="wrap_content"
+        android:text="Id:XX" />
+
+    <TextView
+        android:id="@+id/tvIdAlbum"
+        android:layout_width="95dp"
+        android:layout_height="wrap_content"
+        android:text="IdAlbum:XX" />
+</LinearLayout>
