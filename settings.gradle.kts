@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "API"
+rootProject.name = "ExamenU3"
 include(":app")
  
