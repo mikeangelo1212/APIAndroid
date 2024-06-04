@@ -19,15 +19,4 @@
         android:layout_height="wrap_content"
         android:text="Artista" />
 
-    <TextView
-        android:id="@+id/tvIdCancion"
-        android:layout_width="115dp"
-        android:layout_height="wrap_content"
-        android:text="Id:XX" />
-
-    <TextView
-        android:id="@+id/tvIdAlbum"
-        android:layout_width="95dp"
-        android:layout_height="wrap_content"
-        android:text="IdAlbum:XX" />
 </LinearLayout>

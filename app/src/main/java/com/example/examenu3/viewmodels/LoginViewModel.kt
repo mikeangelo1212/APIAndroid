@@ -13,6 +13,7 @@ import com.example.examenu3.network.RetrofitObject
 import com.example.examenu3.utils.TokenManager
 import kotlinx.coroutines.launch
 
+
 class LoginViewModel(private val repository: AlbumRepository) : ViewModel() {
     private val _logginIn = MutableLiveData<Token>()
     val logginIn: LiveData<Token> get() = _logginIn
@@ -28,7 +29,7 @@ class LoginViewModel(private val repository: AlbumRepository) : ViewModel() {
                     Log.d("Test", "Token recibido: ${result.token}")
                     TokenManager.guardarToken(result.token)
                     TokenManager.guardarUsuario(user)
-                    //_logginIn.postValue(result)
+                    _logginIn.postValue(result)
                 }
                 else {
                     Log.d("Test", "Token fallido: ${result.token}")
@@ -37,7 +38,7 @@ class LoginViewModel(private val repository: AlbumRepository) : ViewModel() {
             catch (e: Exception) {
                 Log.d("Test", "Error ${e.message}")
                 TokenManager.guardarToken("err")
-                //_logginIn.postValue(Token("err"))
+                _logginIn.postValue(Token("err"))
                 Log.d("Test", "Error: ${TokenManager.leerToken()}")
             }
         }

@@ -10,6 +10,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.examenu3.databinding.ActivityMainBinding
 
@@ -37,6 +38,10 @@ class MainActivity : AppCompatActivity() {
             Snackbar.make(view, "Captura de nueva cancion", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
+    }
+
+    internal fun fabVisible(boolean: Boolean){
+        binding.fab.isVisible=boolean
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

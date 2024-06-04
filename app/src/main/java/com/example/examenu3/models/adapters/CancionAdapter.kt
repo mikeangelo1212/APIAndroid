@@ -13,12 +13,12 @@ import com.example.examenu3.Cancion
 
 class CancionAdapter(val function: (Cancion) -> Unit): ListAdapter<Cancion, CancionAdapter.CancionViewHolder>(CancionComparator()) {
     class CancionViewHolder(cancion_item: View, val function: (Cancion) -> Unit): RecyclerView.ViewHolder(cancion_item){
-        val tvIdCancion = cancion_item.findViewById<TextView>(R.id.tvIdCancion)
+        //val tvIdCancion = cancion_item.findViewById<TextView>(R.id.tvIdCancion)
         val tvTitulo = cancion_item.findViewById<TextView>(R.id.tvTitulo)
         val tvArtista = cancion_item.findViewById<TextView>(R.id.tvArtista)
 
         fun bind(cancion: Cancion) {
-            tvIdCancion.text = cancion.idCancion.toString()
+            //tvIdCancion.text = cancion.idCancion.toString()
             tvTitulo.text = cancion.Titulo
             tvArtista.text = cancion.Artista
 
