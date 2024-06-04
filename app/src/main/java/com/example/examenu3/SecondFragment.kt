@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.examenu3.Album.Album
@@ -46,55 +47,59 @@ class SecondFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        Log.d("Perro","Nuestro argumento es: ${args.claveAlbum}")
-//        if(args.claveAlbum.isNotEmpty()){
-//            Log.d("Perro","No estamos solos: ${args.claveAlbum}")
-//
-//            secondFragmentViewModel.getAlbum(args.claveAlbum).observe(viewLifecycleOwner){album->
-//            if (album != null) {
-//                    android.util.Log.d(
-//                        "Perro",
-//                        "Encontramos nuestro objeto ${args.claveAlbum}, objeto editable"
-//                    )
-//                    binding.edtNombre.setText(album.nombre)
-//                    binding.edtClaveAlbum.setText(album.claveAlbum)
-//                    binding.edtGrupo.setText(album.grupo)
-//                    binding.edtLanzamiento.setText(album.añoLanzamiento.toString())
-//                    binding.btnGuardarAlbum.text = "Editar"
-//                    binding.btnBorrarAlbum.isVisible = true
-//                    binding.edtClaveAlbum.isEnabled = false
-//
-//                }
-//            }
-//
-//        }
-//        else binding.btnBorrarAlbum.isVisible=false
-//
-//        binding.btnGuardarAlbum.setOnClickListener {
-//
-//            val nombre = binding.edtNombre.text.toString()
-//            val clave_album = binding.edtClaveAlbum.text.toString()
-//            val grupo = binding.edtGrupo.text.toString()
-//            val anoLanzamiento = binding.edtLanzamiento.text.toString().toInt()
-//
-//            val album = Album(nombre, clave_album, grupo, anoLanzamiento)
-//            secondFragmentViewModel.insertAlbum(album)
-//
-//            //preguntamos si estamos editando
-//            if(args.claveAlbum.isNotEmpty()){
-//                Toast.makeText(requireActivity(), "Elemento editado", Toast.LENGTH_SHORT).show()
-//            }
-//            else Toast.makeText(requireActivity(), "Elemento guardado", Toast.LENGTH_SHORT).show()
-//
-//
-//            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
-//        }
-//
-//        binding.btnBorrarAlbum.setOnClickListener{
-//            secondFragmentViewModel.delete(args.claveAlbum)
-//            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
-//            Toast.makeText(requireContext(), "Elemento borrado", Toast.LENGTH_SHORT).show()
-//        }
+        Log.d("Test","Nuestro argumento es: ${args.claveAlbum}")
+
+        //TODO: necesitamos un metodo que nos traiga una sola cancion o mandar todo el objeto de vergazo
+        if(args.claveAlbum.isNotEmpty()){
+            Log.d("Test","No estamos solos: ${args.claveAlbum}")
+
+            secondFragmentViewModel.cancion.observe(viewLifecycleOwner,Observer{cancion->
+            if (cancion != null) {
+                    Log.d(
+                        "Test",
+                        "Encontramos nuestro objeto ${args.claveAlbum}, objeto editable"
+                    )
+                    binding.edtTitulo.setText(cancion.first().Titulo)
+                    binding.edtArtista.setText(cancion.first().Artista)
+                    binding.btnGuardarAlbum.text = "Editar"
+                    binding.btnBorrarAlbum.isVisible = true
+
+                }
+            })
+
+
+            secondFragmentViewModel.getCancion(args.claveAlbum)
+
+        }
+        else {
+            binding.btnBorrarAlbum.isVisible = false
+        }
+
+        binding.btnGuardarAlbum.setOnClickListener {
+
+            val titulo = binding.edtTitulo.text.toString()
+            val artista = binding.edtArtista.text.toString()
+            var cancion= Cancion(null, titulo, artista)
+            //preguntamos si estamos editando
+            if(args.claveAlbum.isNotEmpty()){
+
+                secondFragmentViewModel.updateCancion(cancion,args.claveAlbum.toInt())
+                Toast.makeText(requireActivity(), "Elemento editado", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                secondFragmentViewModel.insertCancion(cancion)
+                Toast.makeText(requireActivity(), "Elemento guardado", Toast.LENGTH_SHORT).show()
+            }
+
+
+            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+        }
+
+        binding.btnBorrarAlbum.setOnClickListener{
+            secondFragmentViewModel.deleteCancion(args.claveAlbum)
+            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+            Toast.makeText(requireContext(), "Elemento borrado", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onDestroyView() {

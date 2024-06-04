@@ -18,7 +18,7 @@ class CancionAdapter(val function: (Cancion) -> Unit): ListAdapter<Cancion, Canc
         val tvArtista = cancion_item.findViewById<TextView>(R.id.tvArtista)
 
         fun bind(cancion: Cancion) {
-            tvIdCancion.text = cancion.id.toString()
+            tvIdCancion.text = cancion.idCancion.toString()
             tvTitulo.text = cancion.Titulo
             tvArtista.text = cancion.Artista
 
@@ -44,7 +44,7 @@ class CancionAdapter(val function: (Cancion) -> Unit): ListAdapter<Cancion, Canc
         }
 
         override fun areContentsTheSame(oldItem: Cancion, newItem: Cancion): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem.idCancion == newItem.idCancion
         }
     }
 }

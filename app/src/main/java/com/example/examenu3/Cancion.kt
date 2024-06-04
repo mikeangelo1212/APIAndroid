@@ -1,7 +1,7 @@
 package com.example.examenu3
 
 data class Cancion(
-    val id: Int?,
+    val idCancion: Int?,
     val Titulo: String,
     val Artista: String,
     //val Albumid: Int

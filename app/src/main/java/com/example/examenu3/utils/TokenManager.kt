@@ -1,15 +1,18 @@
 package com.example.examenu3.utils
 
+import android.util.Log
+import com.example.examenu3.User
+
 object TokenManager {
     private var _token: String = ""
-    private var _usuario: String = ""
-    val usuario: String get() = _usuario
+    private var _usuario= User(null,"","",0)
+    val usuario: User get() = _usuario
 
     fun guardarToken(token: String) {
         _token = token
     }
 
-    fun guardarUsuario(user: String) {
+    fun guardarUsuario(user: User) {
         _usuario = user
     }
 
@@ -19,6 +22,7 @@ object TokenManager {
 
     fun borrarToken() {
         _token = ""
-        _usuario = ""
+        _usuario=User(null,"","",0)
+        Log.d("Test", "Token borrado")
     }
 }

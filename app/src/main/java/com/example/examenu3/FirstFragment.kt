@@ -17,6 +17,8 @@ import com.example.examenu3.utils.TokenManager
 import com.example.examenu3.viewmodels.FirstFragmentViewModel
 import com.example.examenu3.viewmodels.FirstFragmentViewModelFactory
 
+
+
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
@@ -45,8 +47,9 @@ class FirstFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.d("Test", "Iniciamos el fragmento")
 
-        TokenManager.guardarToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywibm9tYnJlIjoibWlndWVsIiwiaWF0IjoxNzE3MjkyNDMzLCJleHAiOjE3MTk0NTI0MzN9.Yy2b0EfI_8BzZ0Uo9dQrpwEUcdnGEMYRaKb2A5QKb5g")
+        //TokenManager.guardarToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywibm9tYnJlIjoibWlndWVsIiwiaWF0IjoxNzE3MjkyNDMzLCJleHAiOjE3MTk0NTI0MzN9.Yy2b0EfI_8BzZ0Uo9dQrpwEUcdnGEMYRaKb2A5QKb5g")
         //esta madre es cuando le picamos a un objeto
         val adapter = CancionAdapter{
             onItemClick(it)
@@ -59,16 +62,20 @@ class FirstFragment : Fragment() {
         // se muestran en el adapter
         firstFragmentViewModel.canciones.observe(viewLifecycleOwner, Observer { canciones ->
             canciones?.let {
-                Log.d("Perro", "Recycler view pal centro y pa dentro ${canciones}")
+                Log.d("Test", "Recycler view pal centro y pa dentro ${canciones}")
                 adapter.submitList(it)
             }
         })
+
+        Log.d("Test", "Tratamos de meter los objetos al recyclerView")
+
+        firstFragmentViewModel.getCanciones()
     }
 
     private fun onItemClick(cancion: Cancion) {
         Toast.makeText(requireContext(), "Clic a: ${cancion.Titulo}", Toast.LENGTH_SHORT).show()
-        val action = FirstFragmentDirections.actionFirstFragmentToSecondFragment(cancion.id.toString())
-        Log.d("Perro","${cancion.Titulo}, ${cancion.Artista}")
+        val action = FirstFragmentDirections.actionFirstFragmentToSecondFragment(cancion.idCancion.toString())
+        Log.d("Test","${cancion.Titulo}, ${cancion.Artista}")
         findNavController().navigate(action)
     }
 

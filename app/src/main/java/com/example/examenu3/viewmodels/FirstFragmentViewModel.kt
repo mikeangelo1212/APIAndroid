@@ -18,24 +18,7 @@ class FirstFragmentViewModel(private val repository: AlbumRepository) : ViewMode
     private val _canciones = MutableLiveData<List<Cancion>>()
     val canciones: LiveData<List<Cancion>> get() = _canciones
 
-    private val _sanic = MutableLiveData<Test>()
 
-    public val sanic: LiveData<Test> get() = _sanic
-
-//    fun Sonic() {
-//        viewModelScope.launch {
-//            try {
-//                Log.d("Test", "Antes de llamar a la API")
-//                val result = RetrofitObject.cancionesApi.sonic()
-//                Log.d("Test", "Antes de PostValue")
-//                _sanic.postValue(result)
-//                Log.d("Test", "Despues de PostValue")
-//            }
-//            catch (e: Exception) {
-//                Log.d("Test",e.message.toString())
-//            }
-//        }
-//    }
     fun getCanciones() {
         viewModelScope.launch {
             try {
@@ -44,7 +27,7 @@ class FirstFragmentViewModel(private val repository: AlbumRepository) : ViewMode
                 _canciones.postValue(result)
             }
             catch (e: Exception) {
-                Log.d("Test", "Valio madres: ${e.message}")
+                Log.d("Test", "Valio goma: ${e.message}")
             }
         }
     }

@@ -27,10 +27,11 @@ class SecondFragmentViewModel(private val repository: AlbumRepository) : ViewMod
         }
     }
 
-    fun updateCancion(cancion: Cancion) {
+    fun updateCancion(cancion: Cancion,id:Int) {
         viewModelScope.launch {
             try {
-                RetrofitObject.cancionesApi.modificarCancion(TokenManager.leerToken(), cancion.id.toString(), cancion)
+
+                RetrofitObject.cancionesApi.modificarCancion(TokenManager.leerToken(), id.toString(), cancion)
             }
             catch (e: Exception) {
                 Log.d("Test", "No se actualizó aaaaaaaaa: ${e.message}")
@@ -49,20 +50,21 @@ class SecondFragmentViewModel(private val repository: AlbumRepository) : ViewMod
         }
     }
 
-//    fun getCancion(ID: String) {
-//        viewModelScope.launch {
-//            try {
-//                val result = RetrofitObject.cancionesApi.getEmployee(ID)
-//                _empleado.postValue(result)
-//            }
-//            catch (e: Exception) {
-//                Log.d("ERROR", "Algo tronó: ${e.message.toString()}")
-//            }
+    //cachamos el primer objeto
+    fun getCancion(ID: String) {
+        viewModelScope.launch {
+            try {
+                val result = RetrofitObject.cancionesApi.getCancion(TokenManager.leerToken(),ID)
+                _cancion.postValue(result)
+            }
+            catch (e: Exception) {
+                Log.d("ERROR", "Algo tronó: ${e.message.toString()}")
+            }
+        }
+//        return liveData {
+//            emit(repository.getItem(ID))
 //        }
-////        return liveData {
-////            emit(repository.getItem(ID))
-////        }
-//    }
+    }
 
 }
 

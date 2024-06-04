@@ -7,7 +7,6 @@ import retrofit2.create
 object RetrofitObject {
     private const val URL_RANDOM_USER = "https://randomuser.me"
     private const val URL_RICK_AND_MORTY = "https://rickandmortyapi.com"
-    private const val URL_EMPLEADOS = "https://sonicapi-production.up.railway.app"
     private const val URL_CANCIONES = "https://apiandroid.up.railway.app/"
 
 //    val randomAPI = Retrofit.Builder()
